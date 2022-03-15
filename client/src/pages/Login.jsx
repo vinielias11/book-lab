@@ -21,6 +21,7 @@ const Login = () => {
     const data = await response.json();
 
     if (data.usuario) {
+      localStorage.setItem('token', data.usuario);
       alert('Login efetuado com sucesso!');
       window.location.href = '/home';
     } else {

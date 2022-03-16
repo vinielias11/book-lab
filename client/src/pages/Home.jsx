@@ -19,8 +19,16 @@ const Home = () => {
         }
     });
 
+    const getTodos = async () => {
+        const response = await fetch('http://localhost:1337/api/usuarios');
+        const data = await response.json();
+
+        console.log(data);
+    }
+
     return <div>
         <h1>Hello World!</h1>
+        <button onClick={getTodos}>Carregar os usuarios</button>
     </div>
 };
 

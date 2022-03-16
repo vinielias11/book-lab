@@ -3,10 +3,16 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 module.exports = {
+    getTodosOsUsuarios: async (req, res) => {
+        const usuarios = await Usuario.find();
+        
+        return res.json({ status: 'ok', usuarios: usuarios });
+    },
+
     registrar: async (req, res) => {
         try {
             const novaSenha = await bcrypt.hash(req.body.senha, 10);
-            
+
             await Usuario.create({
                 nome: req.body.nome,
                 email: req.body.email,

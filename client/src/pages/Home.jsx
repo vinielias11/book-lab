@@ -24,11 +24,30 @@ const Home = () => {
         const data = await response.json();
 
         console.log(data);
+    };
+
+    const addLivro = async () => {
+        
     }
 
     return <div>
         <h1>Hello World!</h1>
         <button onClick={getTodos}>Carregar os usuarios</button>
+        <form onSubmit={addLivro}>
+        <input 
+          type="email" 
+          value={email} 
+          onChange={(e) => (e.target.value)}
+          placeholder="Email"
+        /> <br />
+        <input 
+          type="password" 
+          value={senha} 
+          onChange={(e) => (e.target.value)}
+          placeholder="Senha"
+        /> <br />
+        <input type="submit" value="Login" />
+        </form>
     </div>
 };
 

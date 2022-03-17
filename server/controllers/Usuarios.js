@@ -6,7 +6,7 @@ module.exports = {
     getTodosOsUsuarios: async (req, res) => {
         const usuarios = await Usuario.find();
         
-        return res.json({ status: 'ok', usuarios: usuarios });
+        return res.status(200).json({ status: 'ok', usuarios: usuarios });
     },
 
     registrar: async (req, res) => {
@@ -19,10 +19,9 @@ module.exports = {
                 senha: novaSenha
             });
     
-            res.json({ status: 'ok' });
+            res.status(200).json({ status: 'ok' });
         } catch (err) {
-            res.statusCode = 400;
-            res.json({ status: 'erro', error: err });
+            res.status(400).json({ status: 'erro', error: err });
         }
     },
 
@@ -32,7 +31,7 @@ module.exports = {
         });
     
         if (!usuario) {
-            return { status: 'erro', error: 'Login inválido' }
+            return res.status(400).json({ status: 'erro', error: 'Login inválido' });
         }
     
         const isSenhaValida = await bcrypt.compare(
@@ -50,10 +49,9 @@ module.exports = {
                 'segredo123'
             );
     
-            return res.json({ status: 'ok', usuario: token });
+            return res.status(200).json({ status: 'ok', usuario: token });
         } else {
-            res.statusCode = 400;
-            return res.json({ status: 'erro', usuario: false });
+            return res.status(400).json({ status: 'erro', usuario: false });
         }
     }
 };

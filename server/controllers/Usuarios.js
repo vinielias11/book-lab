@@ -19,9 +19,9 @@ module.exports = {
                 senha: novaSenha
             });
     
-            res.status(200).json({ status: 'ok' });
+            return res.status(200).json({ status: 'ok' });
         } catch (err) {
-            res.status(400).json({ status: 'erro', error: err });
+            return res.status(400).json({ status: 'erro', error: err });
         }
     },
 
@@ -48,8 +48,8 @@ module.exports = {
                 },
                 'segredo123'
             );
-    
-            return res.status(200).json({ status: 'ok', usuario: token });
+
+            return res.status(200).json({ status: 'ok', usuario: token, idUsuario: usuario._id });
         } else {
             return res.status(400).json({ status: 'erro', usuario: false });
         }

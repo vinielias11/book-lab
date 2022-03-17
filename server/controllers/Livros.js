@@ -10,8 +10,10 @@ module.exports = {
                 avaliacao: req.body.avaliacao,
                 usuario: req.body.usuario
             });
+
+            return res.status(200).json({ status: 'ok' })
         } catch(err) {
-            res.status(400).json({ status: 'erro', error: err });
+            return res.status(400).json({ status: 'erro', error: err });
         }
     }
 }

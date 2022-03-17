@@ -22,6 +22,7 @@ const Login = () => {
 
     if (data.usuario) {
       localStorage.setItem('token', data.usuario);
+      localStorage.setItem('idUsuario', data.idUsuario);
       alert('Login efetuado com sucesso!');
       window.location.href = '/home';
     } else {

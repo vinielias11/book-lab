@@ -1,6 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { 
+  registrar as registrarService
+} from '../api/Usuarios';
+
 const Registrar = () => {
   const navigate = useNavigate();
 
@@ -11,21 +15,9 @@ const Registrar = () => {
   async function registrarUsuario(e) {
     e.preventDefault();
 
-    const response = await fetch('http://localhost:1337/api/registrar', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        nome,
-        email,
-        senha
-      })
-    });
+    const response = await registrarService(nome, email, senha);
 
-    const data = await response.json();
-
-    if (data.status === 'ok') {
+    if (response.status === 'ok') {
       navigate('/login');
     }
   }

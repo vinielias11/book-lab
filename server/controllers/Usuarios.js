@@ -40,14 +40,10 @@ module.exports = {
         );
     
         if (isSenhaValida) {
-    
-            const token = jwt.sign(
-                {
+            const token = jwt.sign({
                     nome: usuario.nome,
                     email: req.body.email
-                },
-                'segredo123'
-            );
+                }, 'segredo123');
 
             return res.status(200).json({ status: 'ok', usuario: token, idUsuario: usuario._id });
         } else {

@@ -1,0 +1,9 @@
+@import "https://fonts.googleapis.com/css?family=Quicksand";
+
+* {
+    font-family: 'Quicksand';
+}
+
+html {
+    background-color: #FAFAFA;
+}

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import jwtDecode from 'jwt-decode'; 
 import { useNavigate } from 'react-router-dom';
 
+import { 
+    adiconarNovoLivro 
+} from '../api/Livros';
+
 const Home = () => {
     const navigate = useNavigate();
     const [titulo, setTitulo] = useState('');
@@ -27,6 +31,16 @@ const Home = () => {
         return localStorage.getItem('idUsuario');
     };
 
+    const getDtoParaAddLivro = () => {
+        return {
+            titulo,
+            autor,
+            paginas,
+            avaliacao,
+            usuario: getIdUsuario()
+        }
+    }
+
     const getTodos = async () => {
         const response = await fetch('http://localhost:1337/api/usuarios');
         const data = await response.json();
@@ -35,24 +49,11 @@ const Home = () => {
     };
 
     const addLivro = async (e) => {
+        const dto = getDtoParaAddLivro();
         e.preventDefault();
 
-        const response = await fetch('http://localhost:1337/api/addLivro', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                titulo,
-                autor,
-                paginas,
-                avaliacao,
-                usuario: getIdUsuario()
-            })
-        });
-
-        const data = await response.json();
-        console.log(data);
+        const response = await adiconarNovoLivro(dto);
+        console.log(response);
     }
 
     return <div>

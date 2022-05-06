@@ -39,10 +39,10 @@ const Registrar = () => {
             <Form onSubmit={registrar}>
                 <Titulo>Registrar-se</Titulo>
                 <FormContent>
-                    <Input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="nome"/>
-                    <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
-                    <Input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} placeholder="senha"/>
-                    <BotaoRegistrar type="submit">Registrar-se</BotaoRegistrar>
+                    <Input type="text" value={nome} required={true} minLength={4} onChange={(e) => setNome(e.target.value)} placeholder="nome"/>
+                    <Input type="email" value={email} required={true} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
+                    <Input type="password" value={senha} required={true} minLength={4} onChange={(e) => setSenha(e.target.value)} placeholder="senha"/>
+                    <BotaoRegistrar type="submit">Registrar</BotaoRegistrar>
                     <LinkLogin onClick={onClickLogin}>Já possui uma conta? Fazer login.</LinkLogin>
                 </FormContent>
             </Form>

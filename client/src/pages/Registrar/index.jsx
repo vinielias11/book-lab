@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-    login as loginService
+    registrar as registrarService
 } from '../../api/Usuarios';
 
 import { 
@@ -10,47 +10,44 @@ import {
     Form,
     FormContent,
     Input,
-    BotaoLogin,
-    LinkRegistrar
+    BotaoRegistrar,
+    LinkLogin
 } from './styles';
 
-const Login = () => {
+const Registrar = () => {
     const navigate = useNavigate();
+    const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    const login = async (e) => {
+    const registrar = async (e) => {
         e.preventDefault();
 
-        const response = await loginService(email, senha);
+        const response = await registrarService(nome, email, senha);
 
-        if (response.usuario) {
-            localStorage.setItem('token', response.usuario);
-            localStorage.setItem('idUsuario', response.idUsuario);
-
-            navigate('/home');
-        } else {
-            alert('Verifique seu email ou senha!');
+        if (response.status === 'ok') {
+            navigate('/login');
         }
     };
 
-    const onClickRegistrar = () => {
-        navigate('/registrar');
+    const onClickLogin = () => {
+        navigate('/login');
     };
 
     return (
         <Container>
-            <Form onSubmit={login}>
-                <Titulo>Login</Titulo>
+            <Form onSubmit={registrar}>
+                <Titulo>Registrar-se</Titulo>
                 <FormContent>
+                    <Input type="text" value={nome} onChange={(e) => setNome(e.target.value)} placeholder="nome"/>
                     <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="email"/>
                     <Input type="password" value={senha} onChange={(e) => setSenha(e.target.value)} placeholder="senha"/>
-                    <BotaoLogin type="submit">Entrar</BotaoLogin>
-                    <LinkRegistrar onClick={onClickRegistrar}>Não possui uma conta? Registre-se.</LinkRegistrar>
+                    <BotaoRegistrar type="submit">Registrar-se</BotaoRegistrar>
+                    <LinkLogin onClick={onClickLogin}>Já possui uma conta? Fazer login.</LinkLogin>
                 </FormContent>
             </Form>
         </Container>
     );
 }
 
-export default Login;
+export default Registrar;

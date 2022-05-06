@@ -56,7 +56,7 @@ export const Input = styled.input`
     }
 `;
 
-export const BotaoLogin = styled.button`
+export const BotaoRegistrar = styled.button`
     font-weight: 600;
     text-align: center;
     font-size: 19px;
@@ -79,7 +79,7 @@ export const BotaoLogin = styled.button`
     }
 `;
 
-export const LinkRegistrar = styled.a`
+export const LinkLogin = styled.a`
     margin-top: 1em;
     cursor: pointer;
 `;

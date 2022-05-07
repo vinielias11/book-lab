@@ -11,7 +11,7 @@ module.exports = {
                 usuario: req.body.usuario
             });
 
-            return res.status(200).json({ status: 'ok' })
+            return res.status(200).json({ status: 'ok' });
         } catch(err) {
             return res.status(400).json({ status: 'erro', error: err });
         }

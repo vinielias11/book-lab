@@ -1,4 +1,4 @@
-export const adiconarNovoLivro = async (dto) => {
+export const adicionarNovoLivro = async (dto) => {
     const response = await fetch('http://localhost:1337/api/addLivro', {
         method: 'POST',
         headers: {

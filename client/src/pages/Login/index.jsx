@@ -4,15 +4,7 @@ import {
     login as loginService
 } from '../../api/Usuarios';
 
-import { 
-    Container,
-    Titulo,
-    Form,
-    FormContent,
-    Input,
-    BotaoLogin,
-    LinkRegistrar
-} from './styles';
+import { Container, Titulo, Form, FormContent, Input, BotaoLogin, LinkRegistrar } from './styles';
 
 const Login = () => {
     const navigate = useNavigate();
